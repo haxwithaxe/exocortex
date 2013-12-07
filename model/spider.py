@@ -1,5 +1,5 @@
 """
-Web Spider model
+Web Spider model (MVC)
 """
 
 __authors__ = ["haxwithaxe <me at haxwithaxe dot net>"]
@@ -12,10 +12,17 @@ from  actor_utils import *
 TARGET_KEY = "target"
 
 class WebSpider(Bot):
-	def __init__(self, target, config):
-		""" config is a model.Config object already loaded"""
+	""" Web Spider model
+	Crawl a page and decide whether to crawl further based on what is found """
+
+	def __init__(self, target, mind, config):
+		""" config is a model.Config object already loaded 
+		@param	target		site to crawl
+		@param	mind		spider group hive mind
+		@param	config		model.Config object"""
 		super.__init__(self, config)
 		self.target = target
+		self.mind = mind
 
 	def on_stop(self):
 		""" Hook for doing any cleanup that should be done after the actor has processed the last message, and before the actor stops. """
@@ -48,3 +55,6 @@ class WebSpider(Bot):
 		""" download the uri made of self.target+path """
 		pass
 
+	def decide(self, data):
+		""" decide what to do based on input """
+		pass
